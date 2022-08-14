@@ -6,11 +6,8 @@ const Home: NextPage = () => {
     <div>
       <Head>
         <title>Registry</title>
-        <meta name='description' content='registry to db' />
-        <link rel='icon' href='/favicon.ico' />
+        <link rel='icon' href='#!' />
       </Head>
-
-      <div className='text-3xl font-bold underline text-red-500'>start</div>
     </div>
   )
 }

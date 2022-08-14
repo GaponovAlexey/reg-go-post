@@ -8,13 +8,10 @@ const SignIn = () => {
   const [password, setPassword] = useState('')
 
   const Send = async () => {
-    const username = 'test1'
-    const password = 'test1'
-
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ name, username, password }),
     }
     const res = await fetch(auth, requestOptions)
     const data = await res.json()

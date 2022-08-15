@@ -1,4 +1,4 @@
-const Item = () => {
+const  List = () => {
   return (
     <div>
       <section className='text-gray-600 body-font'>
@@ -50,4 +50,4 @@ const Item = () => {
   )
 }
 
-export default Item
+export default List 

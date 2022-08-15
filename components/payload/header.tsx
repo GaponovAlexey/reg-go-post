@@ -22,7 +22,7 @@ const Header = ({ children }: any) => {
           </span>
           <nav className='md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-between'>
             <div className='mr-4 hover:text-green-400 cursor-pointer'>
-              <Link href={'auth/SignIn'}>Login</Link>
+              <Link href={'/auth/SignIn'}>Login</Link>
             </div>
             <div className=' hover:text-red-400 cursor-pointer'>Relog</div>
           </nav>

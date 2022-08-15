@@ -24,7 +24,9 @@ const Header = ({ children }: any) => {
             <div className='mr-4 hover:text-green-400 cursor-pointer'>
               <Link href={'/auth/SignIn'}>Login</Link>
             </div>
-            <div className=' hover:text-red-400 cursor-pointer'>Relog</div>
+            <div className=' hover:text-red-400 cursor-pointer'>
+              <Link href={'/auth/SignUp'}>Register</Link>
+            </div>
           </nav>
         </div>
       </header>

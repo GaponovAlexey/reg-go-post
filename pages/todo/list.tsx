@@ -1,4 +1,31 @@
+import { useState } from 'react'
+
+const url = 'http://localhost:8080/api/lists'
+
 const List = () => {
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+
+  const Send = async () => {
+    let headers = new Headers()
+
+    headers.append('Content-Type', 'application/json')
+    headers.append('Accept', 'application/json')
+
+    headers.append('Access-Control-Allow-Origin', 'http://localhost:8080')
+    headers.append('Access-Control-Allow-Credentials', 'true')
+    const requestOptions = {
+      Credential: 'include',
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify({ title, description }),
+    }
+    const res = await fetch(url, requestOptions)
+    const data = await res.json()
+
+    console.log(data)
+  }
+
   return (
     <div>
       <section className='text-gray-600 body-font'>
@@ -18,6 +45,8 @@ const List = () => {
               <input
                 type='text'
                 name='full-name'
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
               />
             </div>
@@ -28,10 +57,15 @@ const List = () => {
               <input
                 type='text'
                 name='email'
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
               />
             </div>
-            <button className='text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg'>
+            <button
+              onClick={Send}
+              className='text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg'
+            >
               Button
             </button>
           </div>

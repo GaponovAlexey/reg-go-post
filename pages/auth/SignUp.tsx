@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 
-const auth = 'http://localhost:8080/auth/sign-in'
+const auth = 'http://localhost:8080/auth/sign-up'
 
-const SignIn = () => {
+const Sign = () => {
+  const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -10,7 +11,7 @@ const SignIn = () => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ name, username, password }),
     }
     const res = await fetch(auth, requestOptions)
     const data = await res.json()
@@ -23,11 +24,28 @@ const SignIn = () => {
       <div className='container px-5 py-24 mx-auto'>
         <div className='flex flex-col text-center w-full mb-12'>
           <h1 className='sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900'>
-            Login
+            Contact Us
           </h1>
+          <div className='lg:w-2/3 mx-auto leading-relaxed text-base'>
+            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
+            gentrify.
+          </div>
         </div>
         <div className='lg:w-1/2 md:w-2/3 mx-auto'>
           <div className='flex flex-wrap -m-2'>
+            <div className='p-2 w-1/2'>
+              <div className='relative'>
+                <div className='leading-7 text-sm text-gray-600'>Name</div>
+                <input
+                  type='text'
+                  id='name'
+                  name='name'
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className='w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+                />
+              </div>
+            </div>
             <div className='p-2 w-1/2'>
               <div className='relative'>
                 <label className='leading-7 text-sm text-gray-600'>Login</label>
@@ -41,7 +59,7 @@ const SignIn = () => {
                 />
               </div>
             </div>
-            <div className='p-2 w-1/2'>
+            <div className='p-2 w-full'>
               <div className='relative'>
                 <label className='leading-7 text-sm text-gray-600'>
                   Password
@@ -117,4 +135,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default Sign

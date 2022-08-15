@@ -3,27 +3,24 @@ import { useState } from 'react'
 const url = 'http://localhost:8080/api/lists'
 
 const List = () => {
+  
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
 
   const Send = async () => {
+    var t = localStorage.getItem('token')
     let headers = new Headers()
-
     headers.append('Content-Type', 'application/json')
-    headers.append('Accept', 'application/json')
-
-    headers.append('Access-Control-Allow-Origin', 'http://localhost:8080')
-    headers.append('Access-Control-Allow-Credentials', 'true')
+    headers.append('Authorization', 'Bearer' + t)
     const requestOptions = {
-      Credential: 'include',
       method: 'POST',
-      headers: headers,
+      headers: {
+        'Authorization': 'Bearer ' + t
+      },
       body: JSON.stringify({ title, description }),
     }
     const res = await fetch(url, requestOptions)
     const data = await res.json()
-
-    console.log(data)
   }
 
   return (

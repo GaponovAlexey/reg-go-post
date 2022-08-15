@@ -14,8 +14,9 @@ const SignIn = () => {
     }
     const res = await fetch(auth, requestOptions)
     const data = await res.json()
+    localStorage.setItem('token', data.token)
 
-    console.log(data)
+    // console.log(data.token)
   }
 
   return (

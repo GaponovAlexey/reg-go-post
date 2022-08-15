@@ -1,9 +1,11 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import Header from '../components/payload/header'
+import { useSelector } from 'react-redux'
 
 const Home: NextPage = () => {
+  
+
   return (
     <div>
       <Head>

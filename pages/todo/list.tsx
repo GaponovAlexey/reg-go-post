@@ -1,26 +1,47 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useGetListTodoQuery } from '../../components/redux/getList'
 
-const url = 'http://localhost:8080/api/lists'
+const url = 'http://localhost:3001/api/lists/'
 
 const List = () => {
+  //get
+  const [getData, setData] = useState([])
+  const { data = [] } = useGetListTodoQuery('')
+  console.log(data)
   
+  useEffect(() => {
+    const getTodoList = async () => {
+      const t = localStorage.getItem('token')
+
+      const headers = new Headers({
+        // 'Content-Type': 'application/json',
+        Authorization: `Bearer ${t}`,
+      })
+      const res = await fetch(url, {
+        method: 'GET',
+        headers,
+      })
+      const Alldata = await res.json()
+      setData(Alldata.data)
+    }
+    getTodoList()
+  }, [])
+
+  //send
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
 
   const Send = async () => {
     var t = localStorage.getItem('token')
-    let headers = new Headers()
-    headers.append('Content-Type', 'application/json')
-    headers.append('Authorization', 'Bearer' + t)
+    const headers = new Headers({
+      Authorization: `Bearer ${t}`,
+    })
     const requestOptions = {
       method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + t
-      },
+      headers,
       body: JSON.stringify({ title, description }),
     }
-    const res = await fetch(url, requestOptions)
-    const data = await res.json()
+    await fetch(url, requestOptions)
   }
 
   return (
@@ -66,6 +87,27 @@ const List = () => {
               Button
             </button>
           </div>
+        </div>
+        <div className='flex justify-center'>
+          <div></div>
+          {data.map((el: any) => (
+            <div className='' key={el.id}>
+              <div>
+                {' '}
+                <div className='text-green-400'>id:</div> {el.id}
+              </div>{' '}
+              <br />
+              <div>
+                <div className='text-green-400'>title:</div> {el.title}
+              </div>
+              <br />
+              <div>
+                <div className='text-green-400'>description:</div>{' '}
+                {el.description} <br />
+              </div>
+              <br />
+            </div>
+          ))}
         </div>
       </section>
     </div>

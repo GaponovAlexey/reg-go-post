@@ -1,11 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import { useSelector } from 'react-redux'
-
 const Home: NextPage = () => {
-  
-
   return (
     <div>
       <Head>
@@ -50,10 +46,6 @@ const Home: NextPage = () => {
                   <div className='bg-gray-100 rounded flex p-4 h-full items-center cursor-pointer hover:bg-slate-400'>
                     <svg
                       fill='none'
-                      stroke='currentColor'
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
-                      stroke-width='3'
                       className='text-indigo-500 w-6 h-6 flex-shrink-0 mr-4'
                       viewBox='0 0 24 24'
                     >

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const auth = 'http://localhost:8080/auth/sign-in'
+const auth = 'http://localhost:3001/auth/sign-in'
 
 const SignIn = () => {
   const [username, setUsername] = useState('')
@@ -9,7 +9,6 @@ const SignIn = () => {
   const Send = async () => {
     const requestOptions = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),
     }
     const res = await fetch(auth, requestOptions)

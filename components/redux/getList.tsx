@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { parseCookies } from 'nookies'
 import { useEffect } from 'react'
 type list = {
   id: 'string'
@@ -7,11 +8,10 @@ type list = {
 }
 const url = 'http://localhost:3001/api'
 
-if (typeof window !== 'undefined') {}
-// const t = localStorage.getItem('token')
+const t = parseCookies()
 
 const headers = new Headers({
-  // Authorization: `Bearer ${t}`,
+  Authorization: `Bearer ${t.token}`,
 })
 
 export const ListTodo = createApi({

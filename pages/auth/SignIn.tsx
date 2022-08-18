@@ -7,14 +7,20 @@ const SignIn = () => {
   const [password, setPassword] = useState('123')
 
   const Send = async () => {
-    const requestOptions = {
+    const res = await fetch(auth, {
       method: 'POST',
+      credentials: 'include',
       body: JSON.stringify({ username, password }),
-    }
-    const res = await fetch(auth, requestOptions)
+    })
     const data = await res.json()
-    setCookie(null, 'token', data.token)
+    console.log(data.token)
     
+
+    setCookie(null, 'token', data.token, {
+      // httpOnly: true,
+      maxAge: 30 * 24 * 60 * 60,
+      path: '/',
+    })
   }
 
   return (

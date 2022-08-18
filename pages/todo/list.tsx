@@ -1,5 +1,4 @@
-import { parseCookies } from 'nookies'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useGetListTodoQuery } from '../../components/redux/getList'
 
 const url = 'http://localhost:3001/api/lists/'
@@ -10,39 +9,23 @@ const List = () => {
   const { data = [] } = useGetListTodoQuery('')
   console.log(data)
   
-  useEffect(() => {
-    const getTodoList = async () => {
 
-      const headers = new Headers({
-        'Content-Type': 'application/json',
-      })
-      const res = await fetch(url, {
-        method: 'GET',
-        headers,
-      })
-      const Alldata = await res.json()
-      setData(Alldata.data)
-      console.log(Alldata.data)
-      
-    }
-    getTodoList()
-  }, [])
+ 
 
   //send
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
 
   const Send = async () => {
-    const t = parseCookies()
-    const headers = new Headers({
-      Authorization: `Bearer ${t.token}`,
-    })
-    const requestOptions = {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({ title, description }),
-    }
-    await fetch(url, requestOptions)
+  //   const headers = new Headers({
+  //     Authorization: `Bearer ${t.token}`,
+  //   })
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers,
+  //     body: JSON.stringify({ title, description }),
+  //   }
+  //   await fetch(url, requestOptions)
   }
 
   return (
@@ -91,7 +74,7 @@ const List = () => {
         </div>
         <div className='flex justify-center'>
           <div></div>
-          {data.map((el: any) => (
+          {data?.data?.map((el: any) => (
             <div className='' key={el.id}>
               <div>
                 {' '}

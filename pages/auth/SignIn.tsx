@@ -14,10 +14,8 @@ const SignIn = () => {
     })
     const data = await res.json()
     console.log(data.token)
-    
 
     setCookie(null, 'token', data.token, {
-      // httpOnly: true,
       maxAge: 30 * 24 * 60 * 60,
       path: '/',
     })

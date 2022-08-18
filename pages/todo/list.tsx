@@ -1,31 +1,23 @@
 import { useState } from 'react'
-import { useGetListTodoQuery } from '../../components/redux/getList'
-
-const url = 'http://localhost:3001/api/lists/'
+import {
+  useAddListMutation,
+  useGetListTodoQuery
+} from '../../components/redux/getList'
 
 const List = () => {
   //get
-  const [getData, setData] = useState([])
   const { data = [] } = useGetListTodoQuery('')
   console.log(data)
   
-
- 
-
   //send
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-
+  const [addProduct, {}] = useAddListMutation()
+  
   const Send = async () => {
-  //   const headers = new Headers({
-  //     Authorization: `Bearer ${t.token}`,
-  //   })
-  //   const requestOptions = {
-  //     method: 'POST',
-  //     headers,
-  //     body: JSON.stringify({ title, description }),
-  //   }
-  //   await fetch(url, requestOptions)
+    if (title && description) {
+      await addProduct({ title, description }).unwrap();
+    }
   }
 
   return (

@@ -1,3 +1,4 @@
+import { parseCookies } from 'nookies'
 import { useEffect, useState } from 'react'
 import { useGetListTodoQuery } from '../../components/redux/getList'
 
@@ -11,11 +12,9 @@ const List = () => {
   
   useEffect(() => {
     const getTodoList = async () => {
-      const t = localStorage.getItem('token')
 
       const headers = new Headers({
-        // 'Content-Type': 'application/json',
-        Authorization: `Bearer ${t}`,
+        'Content-Type': 'application/json',
       })
       const res = await fetch(url, {
         method: 'GET',
@@ -23,6 +22,8 @@ const List = () => {
       })
       const Alldata = await res.json()
       setData(Alldata.data)
+      console.log(Alldata.data)
+      
     }
     getTodoList()
   }, [])
@@ -32,9 +33,9 @@ const List = () => {
   const [description, setDescription] = useState('')
 
   const Send = async () => {
-    var t = localStorage.getItem('token')
+    const t = parseCookies()
     const headers = new Headers({
-      Authorization: `Bearer ${t}`,
+      Authorization: `Bearer ${t.token}`,
     })
     const requestOptions = {
       method: 'POST',

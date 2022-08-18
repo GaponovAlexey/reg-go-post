@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-
+import { parseCookies, setCookie, destroyCookie } from 'nookies'
 const auth = 'http://localhost:3001/auth/sign-in'
 
 const SignIn = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('123')
+  const [password, setPassword] = useState('123')
 
   const Send = async () => {
     const requestOptions = {
@@ -13,9 +13,8 @@ const SignIn = () => {
     }
     const res = await fetch(auth, requestOptions)
     const data = await res.json()
-    localStorage.setItem('token', data.token)
-
-    // console.log(data.token)
+    setCookie(null, 'token', data.token)
+    
   }
 
   return (

@@ -13,7 +13,6 @@ const SignIn = () => {
       body: JSON.stringify({ username, password }),
     })
     const data = await res.json()
-    console.log(data.token)
 
     setCookie(null, 'token', data.token, {
       maxAge: 30 * 24 * 60 * 60,

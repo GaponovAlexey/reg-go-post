@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { parseCookies } from 'nookies'
-import { useEffect } from 'react'
 
 const url = 'http://localhost:3001/api'
 

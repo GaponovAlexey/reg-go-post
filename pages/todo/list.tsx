@@ -1,27 +1,28 @@
 import { useState } from 'react'
 import {
   useAddListMutation,
-  useGetListTodoQuery
+  useGetListTodoQuery,
 } from '../../components/redux/getList'
 
 const List = () => {
   //get
-  const { data = [] } = useGetListTodoQuery('')
-  console.log(data)
-  
+  const { data = [], isLoading } = useGetListTodoQuery('')
+
   //send
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [addProduct, {}] = useAddListMutation()
-  
+
+  const [addProduct] = useAddListMutation()
+
   const Send = async () => {
     if (title && description) {
-      await addProduct({ title, description }).unwrap();
+      await addProduct({ title, description }).unwrap()
     }
   }
 
   return (
     <div>
+      {isLoading && <h1>...Loading</h1>}
       <section className='text-gray-600 body-font'>
         <div className='container px-5 py-24 mx-auto flex flex-wrap items-center'>
           <div className='lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0'>

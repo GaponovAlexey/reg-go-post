@@ -7,12 +7,7 @@ const store = configureStore({
     [ListTodo.reducerPath]: ListTodo.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      thunk: {
-        extraArgument: ListTodo,
-      },
-      serializableCheck: false,
-    }).concat(ListTodo.middleware),
+    getDefaultMiddleware().concat(ListTodo.middleware),
 })
 
 export { store }
